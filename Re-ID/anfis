@@ -1,0 +1,44 @@
+import anfis
+from membership import make_gauss_mfs, make_anfis
+import experimental
+import sklearn.datasets
+import torch
+from torch.utils.data import TensorDataset, DataLoader
+import sklearn.datasets
+import torch
+from torch.utils.data import TensorDataset, DataLoader
+import anfis
+from membership import make_gauss_mfs, make_anfis
+import experimentall
+loss=[]
+acc=[]
+def train_non_hybrid(in_feat=2):
+'''
+Train a non-hybrid Anfis for the Iris data (so, no LSE).
+Loss criterion is CrossEntropy, and expects target to be categories.
+Note that the model still produces (float) scores for each category.
+'''
+#train_data = get_iris_data(in_feat)
+train_data = train_loader
+x, y_actual = train_data.dataset.tensors
+#y_actual = y_actual-1
+model = make_anfis(x, num_mfs=3, num_out=10, hybrid=False)
+optimizer = torch.optim.SGD(model.parameters(), lr=1e-2, momentum=0.99)
+#input=x
+def criterion(input, target): # change the dim and type
+#print(target)
+return torch.nn.CrossEntropyLoss()(input, target.squeeze().long())
+experimentall.train_anfis_with(model, train_data, optimizer, criterion,
+y_pred = model(x)
+nc = torch.sum(y_actual.squeeze().long() == torch.argmax(y_pred, dim=1))
+tot = len(x)
+experimentall.plot_all_mfs(model, x)
+experimentall.plotResults(y_actual, y_pred)
+#errors = experimental.calc_error(y_actual, y_pred)
+#experimental.plotErrors(errors)
+#acc.append(nc*100/tot)
+print('{} of {} correct (={:5.2f}%)'.format(nc, tot, nc*100/tot))
+return model
+
+model = train_non_hybrid()
+print(model.coeff)
