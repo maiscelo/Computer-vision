@@ -1,7 +1,7 @@
 Tarefa de rastreamento utilizando biblioteca open cv e python. 
-Dataset disponível em: http://vision.eecs.yorku.ca/research/anomalous-behaviour-data/
+Dataset disponível em: https://steemit.com/programming/@kasperfred/looking-at-german-traffic-signs
 
 
 
-![](output(1).gif)
+![](outpy(1).gif)
 
