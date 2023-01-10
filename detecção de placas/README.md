@@ -1,4 +1,4 @@
-Tarefa de rastreamento utilizando biblioteca open cv e python. 
+Tarefa de rastreamento utilizando arquitetura yolov5. 
 Dataset disponível em: https://steemit.com/programming/@kasperfred/looking-at-german-traffic-signs
 
 
